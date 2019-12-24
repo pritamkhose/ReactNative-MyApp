@@ -28,3 +28,45 @@ To:
   /heapCapture\/bundle\.js/,
   /.*\/__tests__\/.*/
 ];
+
+
+npx react-native init AWPtry3
+
+react-native run-android start
+
+react-native run-android
+
+react-native start
+
+npm install --save react-navigation 
+npm install --save react-navigation-stack
+npm install react-native-gesture-handler 
+
+
+https://github.com/facebook/metro/issues/453
+
+
+--------------------------------------------------------------------------------------
+
+https://stackoverflow.com/questions/49442316/how-to-build-debug-apk-in-react-native
+
+In your root project directory
+
+Make sure if you have already directory android/app/src/main/assets/ if not there create directory after that create new file and save as index.android.bundle and put your file in like this android/app/src/main/assets/index.android.bundle
+
+After run this in cmd
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+
+cd android 
+
+gradlew assembleDebug
+
+then you can get apk app/build/outputs/apk/debug/app-debug.apk
+
+--------------------------------------------------------------------------------------
+
+https://facebook.github.io/react-native/docs/signed-apk-android
+
+
+--------------------------------------------------------------------------------------
