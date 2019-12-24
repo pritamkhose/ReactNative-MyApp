@@ -1,0 +1,30 @@
+https://stackoverflow.com/questions/58120990/how-to-resolve-the-error-on-react-native-start
+
+This is caused by node v12.11.0 due to the way it deals regular location there two ways to solve this problem
+
+Method I
+
+You can downgrade to node v12.10.0 this will apply the correct way to deal with parsing error
+
+Method II
+
+You can correctly terminate the regular expression in you case by changing the file located a:
+
+\node_modules\metro-config\src\defaults\blacklist.js
+
+From:
+
+var sharedBlacklist = [
+  /node_modules[/\\]react[/\\]dist[/\\].*/,
+  /website\/node_modules\/.*/,
+  /heapCapture\/bundle\.js/,
+  /.*\/__tests__\/.*/
+];
+To:
+
+ var sharedBlacklist = [
+  /node_modules[\/\\]react[\/\\]dist[\/\\].*/,
+  /website\/node_modules\/.*/,
+  /heapCapture\/bundle\.js/,
+  /.*\/__tests__\/.*/
+];
