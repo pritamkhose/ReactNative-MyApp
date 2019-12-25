@@ -41,7 +41,11 @@ export default class SectionListExample extends Component {
     )
   }
 
+  static navigationOptions = {
+    title: 'Section List',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <SectionList
         style={styles.container}

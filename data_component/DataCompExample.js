@@ -27,7 +27,11 @@ export default class DataCompExample extends Component {
     })
   }
 
+  static navigationOptions = {
+    title: 'ToDo List DataComp',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     const {todos} = this.state
 
     return (

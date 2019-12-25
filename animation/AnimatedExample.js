@@ -22,7 +22,11 @@ export default class AnimatedExample extends Component {
     this.startAnimation()
   }
 
+  static navigationOptions = {
+    title: 'Animated Example',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     const {height} = this.state
 
     return (

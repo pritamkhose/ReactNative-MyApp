@@ -12,7 +12,11 @@ export default class CounterExample extends React.Component {
     }, 1000);
   }
 
+  static navigationOptions = {
+    title: 'Counter',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return  <View style={styles.container}>
         <Text>http://www.reactnativeexpress.com/component_api</Text>
         <Counter color={'lightblue'} size={16} />

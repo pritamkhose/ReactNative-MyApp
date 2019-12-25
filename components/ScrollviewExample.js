@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { ScrollView, View, StyleSheet } from 'react-native'
 
 export default class ScrollviewExample extends Component {
+  static navigationOptions = {
+    title: 'Scroll View',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.boxLarge} />

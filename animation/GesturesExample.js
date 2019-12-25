@@ -23,7 +23,11 @@ export default class GesturesExample extends Component {
     })
   }
 
+  static navigationOptions = {
+    title: 'Gestures Example',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     const {dragging, initialTop, initialLeft, offsetTop, offsetLeft} = this.state
 
     // Update style with the state of the drag thus far

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ActivityIndicator, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, ActivityIndicator, ScrollView, RefreshControl, StyleSheet, Alert } from 'react-native'
 
 export default class NetworkingExample extends Component {
 
@@ -10,17 +10,40 @@ export default class NetworkingExample extends Component {
   }
 
   componentWillMount = async () => {
+    this.setState({ loading: true, error: false })
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+      console.log('-->> ' + response.status + ' \n' + JSON.stringify(response));
       const posts = await response.json()
+      if (posts && posts.length > 0) {
+        this.setState({ loading: false, posts })
+      } else {
+        this.setState({ loading: false, error: true })
+        Alert.alert(
+          'Error - ' + response.status,
+          JSON.stringify(response),
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            {
+              text: 'Retry', onPress: () => {
 
-      this.setState({loading: false, posts})
+                console.log('OK Pressed')
+              }
+            },
+          ],
+          { cancelable: false },
+        );
+      }
     } catch (e) {
-      this.setState({loading: false, error: true})
+      this.setState({ loading: false, error: true })
     }
   }
 
-  renderPost = ({id, title, body}, i) => {
+  renderPost = ({ id, title, body }, i) => {
     return (
       <View
         key={id}
@@ -43,8 +66,12 @@ export default class NetworkingExample extends Component {
     )
   }
 
+  static navigationOptions = {
+    title: 'Post WebAPI',
+  };
   render() {
-    const {posts, loading, error} = this.state
+    const { navigate } = this.props.navigation;
+    const { posts, loading, error } = this.state
 
     if (loading) {
       return (
@@ -65,7 +92,8 @@ export default class NetworkingExample extends Component {
     }
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} 
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={this.componentWillMount} />}>
         {posts.map(this.renderPost)}
       </ScrollView>
     )

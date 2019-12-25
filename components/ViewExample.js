@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 export default class ViewExample extends React.Component {
+  static navigationOptions = {
+    title: 'View Example',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.box} />

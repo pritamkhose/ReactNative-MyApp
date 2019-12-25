@@ -21,7 +21,11 @@ export default class FlatListExample extends Component {
     )
   }
 
+  static navigationOptions = {
+    title: 'FlatList',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <FlatList
         style={styles.container}

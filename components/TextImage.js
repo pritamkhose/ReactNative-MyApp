@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 export default class TextImage extends React.Component {
+  static navigationOptions = {
+    title: 'Text Image URL',
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Hello!</Text>

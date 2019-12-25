@@ -32,7 +32,11 @@ export default class RNAnimatedExample extends Component {
     )
   }
 
+  static navigationOptions = {
+    title: 'RN Animated',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     const {animation} = this.state
 
     return (
